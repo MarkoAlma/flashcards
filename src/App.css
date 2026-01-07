@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  bottom: 5px;
-  right: 5px;
+  top: 20px;
+  left: 20px;
   height: 44px;
   width: fit-content;
   border-radius: 16px;
@@ -18,6 +18,7 @@
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  fill: white;
   transition: all 0.3s ease;
 }
 
@@ -97,7 +98,7 @@
 .topic-card {
     background: rgba(255,255,255,0.06) !important;
     border: 1px solid rgba(255,255,255,0.12) !important;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     color: white !important;
     border-radius: 15px !important;
     padding: 18px;
@@ -129,13 +130,14 @@
     background: linear-gradient(135deg, #131721, #1d2433);
     color: white;
     font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
 .topic-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     margin-bottom: 30px;
 }
 
@@ -155,6 +157,7 @@
     cursor: pointer;
     transition: 0.2s;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    text-wrap: nowrap;
 }
 
 .new-card-btn:hover {
@@ -164,9 +167,18 @@
 
 /* Grid of cards */
 .topic-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.kozep {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 30px;
+    margin-top: -63px;
 }
 
 /* Flip card container */
@@ -207,6 +219,7 @@
     border: 1px solid rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    word-break: break-word;
 }
 
 /* Front = Question */
@@ -225,6 +238,7 @@
     color: #ffd86b;
     font-weight: 700;
     font-size: 1.15rem;
+    margin: 0;
 }
 
 .addcard-container {
@@ -251,9 +265,10 @@
 
 .addcard-title {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 35px !important;
     font-size: 1.8rem;
     font-weight: 700;
+    word-break: break-all;
 }
 
 /* Input group */
@@ -363,7 +378,7 @@
 
 .addtopic-title {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px !important;
     font-size: 1.8rem;
     font-weight: 700;
 }
@@ -449,4 +464,88 @@
 
 .back-btn:hover {
     background: rgba(255,255,255,0.1);
+}
+
+.card {
+    align-items: center;
+}
+
+.exit-btn {
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+}
+
+h1 {
+    margin: 0 !important;
+}
+
+.card-body {
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px){
+    .topic-header {
+        grid-template-columns: none;
+    }
+    .gombKozepre {
+        display: flex !important;
+        align-items: center;
+        justify-content: center !important;
+        padding-top: 20px;
+    }
+
+    .glass-btnka {
+        top: 5px;
+        left: 5px;
+    }
+}
+
+.glass-btnk{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 34px;
+  width: fit-content;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 17px;
+  width: 34px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  fill: white;
+  transition: all 0.3s ease;
+}
+
+.glass-btn:hover, .glass-btnk:hover, .glass-btnka:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+.balos {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.jobbos {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.felso {
+    margin-top: -15px !important;
 }

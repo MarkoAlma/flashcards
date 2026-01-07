@@ -1,19 +1,22 @@
-import React, { useContext, useState } from 'react';
-import { MyUserContext } from '../context/MyUserProvider';
+import React from 'react'
+import { useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { addCard } from '../myBackend';
+import { MyUserContext } from '../context/MyUserProvider';
+import { updateCard } from '../myBackend';
 
-const AddCard = () => {
-
-    const { valasztottTopic } = useContext(MyUserContext);
+const EditCard = () => {
+    const {valasztottTopic, valasztottKartya } = useContext(MyUserContext);
     const navigate = useNavigate();
-    const [kerdes, setKerdes] = useState("");
-    const [valasz, setValasz] = useState("");
+    const [kerdes, setKerdes] = useState(valasztottKartya.question);
+    const [valasz, setValasz] = useState(valasztottKartya.answer);    
 
     const handleSubmit = () => {
-        if (!kerdes.trim() || !valasz.trim()) return;
-        addCard(valasztottTopic.id, { question: kerdes, answer: valasz });
-        navigate("/topic");
+        updateCard(valasztottTopic.id, valasztottKartya.id, {question:kerdes, answer:valasz})
+        navigate("/topic")
+        //if (!kerdes.trim() || !valasz.trim()) return;
+        //addCard(valasztottTopic.id, { question: kerdes, answer: valasz });
+        //navigate("/topic");
     };
 
     return (
@@ -22,16 +25,13 @@ const AddCard = () => {
             <div className="addcard-box">
 
                 <h1 className="addcard-title">
-                    Új kártya
-                </h1>
-                <h1 className="addcard-title felso">
-                    {valasztottTopic.name}
+                    Kártya módosítása
                 </h1>
 
 
                 {/* Question */}
                 <div className="input-group">
-                    <label className={kerdes ? "filled" : ""}>Kérdés</label>
+                    <label className={kerdes ? "filled" : ""}></label>
                     <input 
                         type="text"
                         value={kerdes}
@@ -41,7 +41,7 @@ const AddCard = () => {
 
                 {/* Answer */}
                 <div className="input-group">
-                    <label className={valasz ? "filled" : ""}>Válasz</label>
+                    <label className={valasz ? "filled" : ""}></label>
                     <input 
                         type="text"
                         value={valasz}
@@ -66,6 +66,6 @@ const AddCard = () => {
             </div>
         </div>
     );
-};
+}
 
-export default AddCard;
+export default EditCard

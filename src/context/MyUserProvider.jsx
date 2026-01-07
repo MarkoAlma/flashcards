@@ -14,6 +14,8 @@ const MyUserProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : null;
   });
 
+  const [valasztottKartya, setValasztottKartya] = useState({})
+
   // Token mentése localStorage-be
   useEffect(() => {
     if (token) {
@@ -34,7 +36,7 @@ const MyUserProvider = ({ children }) => {
 
   return (
     <MyUserContext.Provider 
-      value={{ token, setToken, valasztottTopic, setValasztottTopic }}
+      value={{ token, setToken, valasztottTopic, setValasztottTopic, valasztottKartya, setValasztottKartya }}
     >
       {children}
     </MyUserContext.Provider>

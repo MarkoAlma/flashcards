@@ -8,7 +8,7 @@ const HomeButton = () => {
 
   return (
     <div className='glass-btnka haza' onClick={()=>navigate("/")}>
-        <FaHome fill='black'/>
+        <FaHome fill='white'/>
     </div>
   )
 }

@@ -12,10 +12,17 @@ import { useContext } from 'react';
 import { MyAuthContext } from '../context/AuthContext';
 import { useState } from 'react';
 
-export default function MyModal({open, setOpen}) {
+export default function MyModal({open, setOpen, onSuccess, atVigyenE}) {
 
     const {submitKey, msg, setMsg} = useContext(MyAuthContext)
     const [key, setKey] = useState("")
+
+    const futtatto = async()=> {
+      const joE = await submitKey(key)
+      if (joE && atVigyenE) {
+        onSuccess()
+      }
+    }
 
   return (
     <React.Fragment>
@@ -27,14 +34,15 @@ export default function MyModal({open, setOpen}) {
             onSubmit={(event) => {
               event.preventDefault();
               setOpen(false);
+              setKey("")
             }}
           >
             <Stack spacing={2}>
               <FormControl>
                 <FormLabel>Kulcs</FormLabel>
-                <Input value={key} onChange={(e)=>setKey(e.target.value)} autoFocus required />
+                <Input type='password' value={key} onChange={(e)=>setKey(e.target.value)} autoFocus />
               </FormControl>
-              <Button type="submit" onClick={()=>submitKey(key)}>Belépés</Button>
+              <Button type="submit" onClick={futtatto}>Belépés</Button>
             </Stack>
           </form>
         </ModalDialog>
